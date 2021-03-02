@@ -12,8 +12,11 @@ const axios = require('axios').default;
  
 (async function getNames(){
   try{
-    const {data} = await axios.get("https://swapi.dev/api/people");
-    users = data.map(user=>user.name);
+    //const {data} = await axios.get("https://jsonplaceholder.typicode.com/users"
+    //);
+    const {data} = await axios.get("https://swapi.dev/api/people/1/");
+    //users = data.map(user => user.name )
+    users = data.map(user => user.name);
     
     console.log(users)
   } catch(error){
