@@ -3,7 +3,8 @@ const http = require('http'),
  logger = require('morgan'),
  cors = require('cors'),
  express = require('express'),
- bodyParser = require('body-parser');
+ bodyParser = require('body-parser'),
+ mongoose = require('mongoose');
 
     var app = express();
     var port = 8000;
@@ -42,3 +43,9 @@ const http = require('http'),
       
     //  res.end(); //end the response
    // }).listen(8000); // listen for requests on port 8000
+
+   const dbURI = "mongodb://localhost/test";
+
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+        .then((result) => console.log('connected to db'))
+        .catch((err) => console.log(err));

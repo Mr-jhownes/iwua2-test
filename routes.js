@@ -1,7 +1,8 @@
 const express = require('express');
 router = express.Router();
 
-var itemControl = require('./itemController');
+var itemControl = require('./itemController'),
+userCtrl = require('./user-controller');
 
 router.get('/hello', itemControl.getWorld);
 
