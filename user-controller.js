@@ -1,4 +1,4 @@
-const user = require('./models/user');
+var User = require('./models/user');
 
 exports.createUser = function(req, res) { 
     var newuser = new User(req.body);
@@ -19,3 +19,33 @@ exports.getUsers = function(req, res) {
     res.json(users);
   }); 
 };
+
+exports.getUser = function(req, res) {
+  User.findOne({_id: req.params.id}, function (err, users) {
+    if (err) {
+      res.status(400).json(err); 
+    } 
+    res.json(users);
+  }); 
+};
+
+exports.updateUser = function(req, res) {
+    User.findOneAndUpdate({_id: req.params.id}, req.body, {new: true} , function (err, users){
+     if (err) {
+      res.status(400).json(err); 
+    } 
+    res.json(users);
+  });
+};
+
+exports.deleteUser = function(req, res){
+    
+
+     User.findByIdAndDelete({_id: req.params.id}, function (err, users){
+     if (err) {
+      res.status(400).json(err); 
+    } 
+    res.json(users);
+  });
+
+}
