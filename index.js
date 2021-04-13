@@ -4,11 +4,14 @@ const http = require('http'),
  cors = require('cors'),
  express = require('express'),
  bodyParser = require('body-parser'),
- mongoose = require('mongoose');
+ mongoose = require('mongoose'),
+ dotenv = require('dotenv');
 
+    dotenv.config();
     var app = express();
     var port = 8000;
 
+    
     app.use(bodyParser.json());
     app.use(logger('tiny'));
     app.use(require('./routes'));
@@ -44,7 +47,7 @@ const http = require('http'),
     //  res.end(); //end the response
    // }).listen(8000); // listen for requests on port 8000
 
-   const dbURI = "mongodb://localhost/test";
+   const dbURI = process.env.DB_URL;
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
         .then((result) => console.log('connected to db'))
